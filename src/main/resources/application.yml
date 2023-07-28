@@ -19,9 +19,24 @@ spring:
       initial-size: 5
       max-size: 10
   application:
-    name: order-service
+    name: transaction-service
   lifecycle:
     timeout-per-shutdown-phase: 15s
+  kafka:
+    bootstrap-servers:
+     - localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+    listener:
+      missing-topics-fatal: false
+  cloud:
+    function:
+      definition: cashbackApproved
+    stream:
+      bindings:
+        cashbackApproved-int-0:
+          destination: cashbackApproved
+          group: ${spring.application.name}
 
 management:
   endpoints:
