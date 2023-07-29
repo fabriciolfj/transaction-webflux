@@ -1,8 +1,6 @@
 package com.github.transaction.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
 import java.util.stream.Stream;
 
 @AllArgsConstructor
@@ -19,5 +17,9 @@ public enum TransactionType {
                 .filter(t -> t.describe.equals(describe))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
+    }
+
+    public String getDescribe() {
+        return describe;
     }
 }

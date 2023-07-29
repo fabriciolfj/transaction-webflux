@@ -23,4 +23,8 @@ public class TransactionEntity{
         this.balance = this.total.subtract(value);
         return this;
     }
+
+    public void addTotal(final BigDecimal value) {
+        this.total.add(total.multiply(value));
+    }
 }

@@ -11,8 +11,8 @@ spring:
     password: ${spring.r2dbc.password}
     url: jdbc:postgresql://localhost:5432/postgres
   r2dbc:
-    username: user
-    password: password
+    username: root
+    password: root
     url: r2dbc:postgresql://localhost:5432/postgres
     pool:
       max-create-connection-time: 2s
@@ -56,3 +56,6 @@ management:
 logging:
   pattern:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+rate:
+  credit: 0.2
