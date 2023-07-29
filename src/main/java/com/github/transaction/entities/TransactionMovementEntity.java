@@ -28,4 +28,8 @@ public class TransactionMovementEntity{
     public String getTypeTransaction() {
         return this.transaction.getType().getDescribe();
     }
+
+    public String getTokenValue() {
+        return this.token.getCode();
+    }
 }

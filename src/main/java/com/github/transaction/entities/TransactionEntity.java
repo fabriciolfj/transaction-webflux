@@ -18,6 +18,7 @@ public class TransactionEntity{
     private BigDecimal total;
     private BigDecimal discount;
     private BigDecimal balance;
+    private StatusTransaction status;
 
     public TransactionEntity applyDiscount(final BigDecimal value) {
         this.balance = this.total.subtract(value);
