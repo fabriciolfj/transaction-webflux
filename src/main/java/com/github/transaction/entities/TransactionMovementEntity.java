@@ -24,4 +24,8 @@ public class TransactionMovementEntity{
     public String getTransaction() {
         return this.transaction.getCode();
     }
+
+    public String getTypeTransaction() {
+        return this.transaction.getType().getDescribe();
+    }
 }

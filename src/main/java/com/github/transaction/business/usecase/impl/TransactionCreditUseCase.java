@@ -1,6 +1,5 @@
 package com.github.transaction.business.usecase.impl;
 
-import com.github.transaction.business.providers.ProcessCashbackProvider;
 import com.github.transaction.business.providers.SaveTransactionProvider;
 import com.github.transaction.business.usecase.TransactionUseCase;
 import com.github.transaction.entities.TransactionMovementEntity;
@@ -21,15 +20,13 @@ public class TransactionCreditUseCase implements TransactionUseCase {
     private String rate;
 
     private final SaveTransactionProvider saveTransactionProvider;
-    private final ProcessCashbackProvider cashbackProvider;
+
 
     @Override
     public Mono<TransactionMovementEntity> execute(final Mono<TransactionMovementEntity> entityMono) {
         return entityMono
                 .map(t -> t.applyRate(new BigDecimal(rate)))
                 .flatMap(t -> saveTransactionProvider.process(Mono.just(t)))
-                .doOnNext(t -> log.info("transaction {}, save execute success", t.getTransaction()))
-                .flatMap(t -> cashbackProvider.process(Mono.just(t)))
-                .doOnNext(t -> log.info("transaction {}, cashback execute success", t.getTransaction()));
+                .doOnNext(t -> log.info("transaction {}, save execute success", t.getTransaction()));
     }
 }
