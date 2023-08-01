@@ -26,4 +26,8 @@ public class TokenValidationEntity {
     public boolean isTokenValid() {
         return this.date.isAfter(LocalDateTime.now());
     }
+
+    public boolean isEqualToken(final String code) {
+        return this.code.equals(code);
+    }
 }

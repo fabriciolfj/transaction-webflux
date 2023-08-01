@@ -28,4 +28,8 @@ public class TransactionEntity{
     public void addTotal(final BigDecimal value) {
         this.total.add(total.multiply(value));
     }
+
+    public void setStatus(final StatusTransaction status) {
+        this.status = status;
+    }
 }
