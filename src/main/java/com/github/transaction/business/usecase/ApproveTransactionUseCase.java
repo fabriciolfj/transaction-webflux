@@ -17,8 +17,9 @@ import reactor.util.function.Tuple2;
 @Slf4j
 public class ApproveTransactionUseCase {
 
-    private final ProcessCashbackProvider cashbackProvider;
+
     private final FindTransactionProvider findTransactionProvider;
+    private final CashbackUseCase cashbackUseCase;
 
     public Mono<Void> execute(final Mono<AuthorizeTransactionEntity> authorizeTransactionEntityMono) {
         return findTransactionProvider.process(authorizeTransactionEntityMono)
@@ -28,8 +29,8 @@ public class ApproveTransactionUseCase {
                 .map(Tuple2::getT1)
                 .map(TransactionMovementEntity::aprrovedTransaction)
                 .doOnNext(t -> log.info("transaction approved {}", t.getTransaction()))
-                .map(v -> cashbackProvider.process(Mono.just(v)))
-                .defaultIfEmpty(Mono.error(() -> new BusinessException(ErrorEnum.INVALID_TOKEN.getMessage())))
+                .map(v -> cashbackUseCase.execute(Mono.just(v)))
+                .defaultIfEmpty(Mono.defer(() -> Mono.error(() -> new BusinessException(ErrorEnum.INVALID_TOKEN.getMessage()))))
                 .then();
     }
 }

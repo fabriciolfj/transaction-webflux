@@ -43,6 +43,10 @@ public class TransactionMovementEntity{
         return this;
     }
 
+    public boolean isTransactionDebit() {
+        return getTypeTransaction().equals(TransactionType.DEBIT.getDescribe());
+    }
+
     public StatusTransaction getStatus() {
         return this.transaction.getStatus();
     }
