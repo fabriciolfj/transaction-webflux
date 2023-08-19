@@ -19,7 +19,7 @@ public class ProcessCashbackProviderImpl  implements ProcessCashbackProvider {
 
     private final StreamBridge streamBridge;
     private final ObjectMapper objectMapper;
-    @Value("{topic.cashback}")
+    @Value("${topic.cashback}")
     private String topic;
 
     @Override
