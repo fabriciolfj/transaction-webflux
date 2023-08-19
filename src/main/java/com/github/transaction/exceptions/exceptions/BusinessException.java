@@ -1,4 +1,4 @@
-package com.github.transaction.exceptions;
+package com.github.transaction.exceptions.exceptions;
 
 public class BusinessException extends RuntimeException {
 

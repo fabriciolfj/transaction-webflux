@@ -19,7 +19,7 @@ public class TransactionConverter {
                         .status(StatusTransaction.PENDING)
                         .balance(request.getTotal())
                         .total(request.getTotal())
-                        .type(TransactionType.valueOf(request.getType()))
+                        .type(TransactionType.toEnum(request.getType()))
                         .code(UUID.randomUUID().toString())
                         .discount(BigDecimal.ZERO)
                         .build(),
@@ -29,7 +29,8 @@ public class TransactionConverter {
     public static TransactionResponse toResponse(final TransactionMovementEntity entity) {
         return TransactionResponse
                 .builder()
-                .code(entity.getTokenValue())
+                .token(entity.getTokenValue())
+                .code(entity.getTransaction())
                 .build();
     }
 }

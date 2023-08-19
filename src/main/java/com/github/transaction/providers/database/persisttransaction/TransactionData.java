@@ -1,4 +1,4 @@
-package com.github.transaction.providers.database.data;
+package com.github.transaction.providers.database.persisttransaction;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

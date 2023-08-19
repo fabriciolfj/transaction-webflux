@@ -19,6 +19,7 @@ public class CashbackUseCase {
                 .filter(TransactionMovementEntity::isTransactionDebit)
                 .doOnNext(t -> log.info("transaction is debit, execute cashback {}", t.getTransaction()))
                 .flatMap(t -> cashbackProvider.process(Mono.just(t)))
+                .doOnNext(t -> log.info("send message cashback success {}", t.getTransaction()))
                 .switchIfEmpty(Mono.defer(Mono::empty))
                 .then();
     }

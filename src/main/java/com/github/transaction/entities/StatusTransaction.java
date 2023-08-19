@@ -14,7 +14,7 @@ public enum StatusTransaction {
 
     private final String describe;
 
-    public StatusTransaction toEnum(final String describe) {
+    public static StatusTransaction toEnum(final String describe) {
         return Stream.of(StatusTransaction.values())
                 .filter(s -> s.describe.equals(describe))
                 .findFirst()

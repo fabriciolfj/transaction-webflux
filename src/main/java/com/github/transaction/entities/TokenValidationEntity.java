@@ -18,7 +18,7 @@ public class TokenValidationEntity {
     private LocalDateTime date;
 
     public TokenValidationEntity generetedToken() {
-        this.code = RandomStringUtils.random(6);
+        this.code = RandomStringUtils.randomAlphabetic(6);
         this.date = LocalDateTime.now().plusSeconds(30);
         return this;
     }

@@ -1,10 +1,9 @@
 package com.github.transaction.business.usecase;
 
 import com.github.transaction.business.providers.FindTransactionProvider;
-import com.github.transaction.business.providers.ProcessCashbackProvider;
 import com.github.transaction.entities.AuthorizeTransactionEntity;
 import com.github.transaction.entities.TransactionMovementEntity;
-import com.github.transaction.exceptions.BusinessException;
+import com.github.transaction.exceptions.exceptions.BusinessException;
 import com.github.transaction.exceptions.enums.ErrorEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -4,10 +4,11 @@ import java.util.ResourceBundle;
 
 public enum ErrorEnum {
 
+    TRANSACTION_NOT_FOUND,
     INVALID_TOKEN;
 
     public String getMessage() {
         var bundle = ResourceBundle.getBundle("exceptions/messages");
-        return this.name() + ".message";
+        return bundle.getString(this.name() + ".message");
     }
 }

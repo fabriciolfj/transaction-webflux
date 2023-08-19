@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-import static com.github.transaction.entrypoints.controller.transaction.converters.TransactionConverter.toEntity;
-
 @RestController
 @RequiredArgsConstructor
 @Slf4j

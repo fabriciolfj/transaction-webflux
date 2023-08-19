@@ -12,7 +12,7 @@ public enum TransactionType {
 
     private String describe;
 
-    public TransactionType toEnum(final String describe) {
+    public static TransactionType toEnum(final String describe) {
         return Stream.of(values())
                 .filter(t -> t.describe.equals(describe))
                 .findFirst()
