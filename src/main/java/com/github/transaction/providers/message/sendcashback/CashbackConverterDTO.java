@@ -7,6 +7,6 @@ public class CashbackConverterDTO {
     private CashbackConverterDTO() { }
 
     public static CasbhbackDTO toDTO(final TransactionMovementEntity entity) {
-        return new CasbhbackDTO(entity.getTransaction(), entity.getTotal());
+        return new CasbhbackDTO(entity.getTransaction(), entity.getCodeCustomer(), entity.getTotal());
     }
 }
