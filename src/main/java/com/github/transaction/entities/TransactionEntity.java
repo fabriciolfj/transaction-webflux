@@ -19,10 +19,12 @@ public class TransactionEntity{
     private BigDecimal discount;
     private BigDecimal balance;
     private StatusTransaction status;
+    private boolean isUseCashback;
+    private BigDecimal cashback;
 
-    public TransactionEntity applyDiscount(final BigDecimal value) {
+    public void addDiscount(final BigDecimal value) {
         this.balance = this.total.subtract(value);
-        return this;
+        this.cashback = value;
     }
 
     public void addTotal(final BigDecimal value) {

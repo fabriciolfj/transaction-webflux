@@ -1,6 +1,5 @@
 package com.github.transaction.business.usecase;
 
-import com.github.transaction.business.providers.ProcessCashbackProvider;
 import com.github.transaction.entities.TransactionMovementEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,15 +11,15 @@ import reactor.core.publisher.Mono;
 @Service
 public class CashbackUseCase {
 
-    private final ProcessCashbackProvider cashbackProvider;
+    private final CashbackCalculateUseCase cashbackCalculateUseCase;
+    private final CashbackApplyUseCase cashbackApplyUseCase;
 
     public Mono<Void> execute(final Mono<TransactionMovementEntity> entity) {
         return entity
-                .filter(TransactionMovementEntity::isTransactionDebit)
-                .doOnNext(t -> log.info("transaction is debit, execute cashback {}", t.getTransaction()))
-                .flatMap(t -> cashbackProvider.process(Mono.just(t)))
-                .doOnNext(t -> log.info("send message cashback success {}", t.getTransaction()))
-                .switchIfEmpty(Mono.defer(Mono::empty))
+                .filter(TransactionMovementEntity::isUseCashback)
+                .doOnNext(t -> log.info("transaction is use cashback {}", t.getTransaction()))
+                .flatMap(cashbackApplyUseCase::execute)
+                .switchIfEmpty(Mono.defer(() -> cashbackCalculateUseCase.execute(entity)))
                 .then();
     }
 }

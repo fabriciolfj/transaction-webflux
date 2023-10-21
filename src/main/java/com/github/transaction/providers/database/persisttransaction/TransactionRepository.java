@@ -11,6 +11,7 @@ public interface TransactionRepository extends ReactiveCrudRepository<Transactio
 
 
     @Modifying
-    @Query("update transactions set status = :#{#data.status} where code = :#{#data.code}")
+    @Query("update transactions set status = :#{#data.status}, balance = :#{#data.balance}, cashback = :#{#data.cashback}" +
+            " where code = :#{#data.code}")
     Mono<Void> updateTransaction(final TransactionData data);
 }

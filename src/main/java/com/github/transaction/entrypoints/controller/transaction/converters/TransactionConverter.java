@@ -22,6 +22,8 @@ public class TransactionConverter {
                         .type(TransactionType.toEnum(request.getType()))
                         .code(UUID.randomUUID().toString())
                         .discount(BigDecimal.ZERO)
+                        .cashback(BigDecimal.ZERO)
+                        .isUseCashback(request.isUseCashback())
                         .build(),
                 new TokenValidationEntity().generetedToken());
     }

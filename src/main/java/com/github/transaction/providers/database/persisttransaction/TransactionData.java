@@ -29,4 +29,7 @@ public class TransactionData {
     @Column("date_token")
     private LocalDateTime dateToken;
     private String customer;
+    @Column("use_cashback")
+    private boolean useCashback;
+    private BigDecimal cashback;
 }

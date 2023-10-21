@@ -9,5 +9,7 @@ status      varchar(20) not null,
 token       varchar(50) not null,
 date_token  timestamp    not null,
 customer    varchar(255) not null,
+cashback    numeric(15,4) not null,
+use_cashback varchar(5) not null,
 unique(code)
 );

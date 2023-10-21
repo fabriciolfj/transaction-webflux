@@ -22,6 +22,11 @@ public class TransactionMovementEntity{
         return this;
     }
 
+    public TransactionMovementEntity applyDiscount(final BigDecimal value) {
+        this.transaction.addDiscount(value);
+        return this;
+    }
+
     public String getTransaction() {
         return this.transaction.getCode();
     }
@@ -69,5 +74,13 @@ public class TransactionMovementEntity{
 
     public LocalDateTime getDateTimeToken() {
         return this.token.getDate();
+    }
+
+    public BigDecimal getCashback() {
+        return this.transaction.getCashback();
+    }
+
+    public boolean isUseCashback() {
+        return this.transaction.isUseCashback();
     }
 }

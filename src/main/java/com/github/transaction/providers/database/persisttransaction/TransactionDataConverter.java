@@ -28,6 +28,8 @@ public class TransactionDataConverter {
                 .discount(entity.getDiscount())
                 .customer(entity.getCodeCustomer())
                 .dateToken(entity.getDateTimeToken())
+                .cashback(entity.getCashback())
+                .useCashback(entity.isUseCashback())
                 .build();
     }
 
@@ -52,6 +54,8 @@ public class TransactionDataConverter {
                 .total(data.getTotal())
                 .status(StatusTransaction.toEnum(data.getStatus()))
                 .type(TransactionType.toEnum(data.getType()))
+                .cashback(data.getCashback())
+                .isUseCashback(data.isUseCashback())
                 .build();
     }
 }

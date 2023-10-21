@@ -71,4 +71,8 @@ rate:
   credit: 0.2
 
 topic:
+  cashbackUse: cashbackUse
   cashback: cashback
+
+url:
+  cashback: http://localhost:8081
