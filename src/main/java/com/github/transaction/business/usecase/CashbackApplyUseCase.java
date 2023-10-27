@@ -3,7 +3,6 @@ package com.github.transaction.business.usecase;
 import com.github.transaction.business.UpdateTransactionProvider;
 import com.github.transaction.business.providers.DebitCashbackProvider;
 import com.github.transaction.business.providers.FindCashbackProvider;
-import com.github.transaction.business.providers.SaveTransactionProvider;
 import com.github.transaction.entities.TransactionMovementEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
