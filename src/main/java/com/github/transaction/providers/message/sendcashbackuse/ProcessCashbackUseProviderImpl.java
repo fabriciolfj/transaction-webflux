@@ -21,7 +21,7 @@ public class ProcessCashbackUseProviderImpl implements DebitCashbackProvider {
     private String topic;
 
     @Override
-    public Mono<Void> process(final Mono<TransactionMovementEntity> monoEntity) {
+    public Mono<TransactionMovementEntity> process(final Mono<TransactionMovementEntity> monoEntity) {
         return monoEntity.map(CashbackUseConverterDTO::toDTO)
                 .map(dto -> {
                     try {
@@ -32,6 +32,6 @@ public class ProcessCashbackUseProviderImpl implements DebitCashbackProvider {
                 })
                 .map(value -> streamBridge.send(topic, value))
                 .doOnNext(v -> log.info("debit use cashback {}", v))
-                .then();
+                .then(monoEntity);
     }
 }

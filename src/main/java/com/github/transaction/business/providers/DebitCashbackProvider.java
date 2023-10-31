@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface DebitCashbackProvider {
 
-    Mono<Void> process(final Mono<TransactionMovementEntity> entity);
+    Mono<TransactionMovementEntity> process(final Mono<TransactionMovementEntity> entity);
 }

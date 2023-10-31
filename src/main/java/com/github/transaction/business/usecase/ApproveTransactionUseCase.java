@@ -33,9 +33,9 @@ public class ApproveTransactionUseCase {
                 .doOnNext(t -> log.info("token valid to transaction {}", t.getT2().getCode()))
                 .map(Tuple2::getT1)
                 .map(TransactionMovementEntity::aprrovedTransaction)
-                .flatMap(t -> updateTransactionProvider.process(Mono.just(t)))
                 .doOnNext(t -> log.info("transaction approved {}, type {}", t.getTransaction(), t.getTypeTransaction()))
                 .flatMap(v -> cashbackUseCase.execute(Mono.just(v)))
+                .flatMap(t -> updateTransactionProvider.process(Mono.just(t)))
                 .then();
     }
 }

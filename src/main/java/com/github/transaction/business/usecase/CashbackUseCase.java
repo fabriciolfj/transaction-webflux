@@ -14,12 +14,11 @@ public class CashbackUseCase {
     private final CashbackCalculateUseCase cashbackCalculateUseCase;
     private final CashbackApplyUseCase cashbackApplyUseCase;
 
-    public Mono<Void> execute(final Mono<TransactionMovementEntity> entity) {
+    public Mono<TransactionMovementEntity> execute(final Mono<TransactionMovementEntity> entity) {
         return entity
                 .filter(TransactionMovementEntity::isUseCashback)
                 .doOnNext(t -> log.info("transaction is use cashback {}", t.getTransaction()))
                 .flatMap(cashbackApplyUseCase::execute)
-                .switchIfEmpty(Mono.defer(() -> cashbackCalculateUseCase.execute(entity)))
-                .then();
+                .switchIfEmpty(Mono.defer(() -> cashbackCalculateUseCase.execute(entity)));
     }
 }
